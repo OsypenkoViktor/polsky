@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/polsky/static/css/main.43d6e168.css",
+    "main.js": "/polsky/static/js/main.f319d71f.js",
+    "static/media/4.jpg": "/polsky/static/media/4.16c2911b00d4a3d70b54.jpg",
+    "static/media/Roboto-Regular.ttf": "/polsky/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/2.jpg": "/polsky/static/media/2.bbcbd151beede39ae948.jpg",
+    "static/media/3.jpg": "/polsky/static/media/3.e0624ad1fc5c52aecef3.jpg",
+    "static/media/stretch-ceilings-in-the-living-room.jpg": "/polsky/static/media/stretch-ceilings-in-the-living-room.e0624ad1fc5c52aecef3.jpg",
+    "static/media/5.jpg": "/polsky/static/media/5.b183f94b77c9980b65e1.jpg",
+    "static/media/logo.jpg": "/polsky/static/media/logo.b495cae96f58928f237c.jpg",
+    "static/media/1.jpg": "/polsky/static/media/1.6b6502c06be51e1b45d0.jpg",
+    "static/media/slick.svg": "/polsky/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/polsky/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/polsky/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/polsky/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/polsky/index.html",
+    "main.43d6e168.css.map": "/polsky/static/css/main.43d6e168.css.map",
+    "main.f319d71f.js.map": "/polsky/static/js/main.f319d71f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.43d6e168.css",
+    "static/js/main.f319d71f.js"
+  ]
+}
