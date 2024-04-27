@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 @font-face{
@@ -13,4 +14,6 @@
 
 body{
 background: rgb(255, 0, 0);
-    background: linear-gradient(90deg, rgba(255, 0, 0, 0.14329481792717091) 0%, rgba(0, 0, 255, 0.12368697478991597) 48%, rgba(237, 255, 4, 0.1516981792717087) 100%);}
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.14329481792717091) 0%, rgba(0, 0, 255, 0.12368697478991597) 48%, rgba(237, 255, 4, 0.1516981792717087) 100%);
+width: 100%;
+}

@@ -3,17 +3,17 @@ import Slider from "react-slick";
 import { Typography, Divider } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-import image1 from "../Images/SliderImages/1.jpg";
-import image2 from "../Images/SliderImages/2.jpg";
-import image3 from "../Images/SliderImages/3.jpg";
-import image4 from "../Images/SliderImages/4.jpg";
-import image5 from "../Images/SliderImages/5.jpg";
+import { ApiResponse } from "../Helpers/APITypes";
+import { URLs } from "../Helpers/URLs";
 
 const { Title, Text } = Typography;
 
-const SliderContainer = () => {
-  var settings = {
+const SliderContainer = ({
+  slidesImgList,
+}: {
+  slidesImgList: string[] | undefined;
+}) => {
+  let settings = {
     dots: true,
     fade: true,
     infinite: true,
@@ -25,6 +25,7 @@ const SliderContainer = () => {
 
   return (
     <div
+      id="slider"
       style={{
         marginBottom: "50px",
         display: "flex",
@@ -41,23 +42,13 @@ const SliderContainer = () => {
         І ще один напис-"підводка" до розділу з фотогалереєю
       </Text>
       <Divider></Divider>
-      <div style={{ width: "90%" }}>
+      <div style={{ width: "80%" }}>
         <Slider {...settings}>
-          <div>
-            <SliderImage backgroundImage={image1} />
-          </div>
-          <div>
-            <SliderImage backgroundImage={image2} />
-          </div>
-          <div>
-            <SliderImage backgroundImage={image3} />
-          </div>
-          <div>
-            <SliderImage backgroundImage={image4} />
-          </div>
-          <div>
-            <SliderImage backgroundImage={image5} />
-          </div>
+          {slidesImgList?.map((imgName, index) => (
+            <div key={index}>
+              <SliderImage backgroundImage={URLs.imagesBaseURL + imgName} />
+            </div>
+          ))}
         </Slider>
       </div>
     </div>
@@ -75,6 +66,7 @@ const SliderImage: React.FC<SliderImageProps> = ({ backgroundImage }) => {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    borderRadius: "15px",
   };
   return <div style={sliderImageStyle}></div>;
 };

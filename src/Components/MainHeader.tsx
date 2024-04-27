@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Typography } from "antd";
-import logo from "../Images/logo.jpg";
+import logo from "../Images/Logo.png";
+import NavBar from "./NavBar";
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const MainHeader: React.FC = () => {
-  const [height, setHeight] = useState(
-    window.innerWidth < 600 ? "50vh" : "70vh"
-  );
   const [iconSize, setIconSize] = useState(
-    window.innerWidth < 600 ? "150" : "300"
+    window.innerWidth < 600 ? "400" : "600"
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setHeight(window.innerWidth < 600 ? "50vh" : "60vh");
-      setIconSize(window.innerWidth < 600 ? "150" : "300");
+      setIconSize(window.innerWidth < 600 ? "400" : "600");
     };
 
     window.addEventListener("resize", handleResize);
@@ -31,11 +28,16 @@ const MainHeader: React.FC = () => {
       align="center"
       justify="center"
       vertical
-      style={{ height: height, textAlign: "center" }}
+      style={{ height: "100vh", textAlign: "center", minHeight: "700px" }}
     >
-      <img src={logo} alt="logo" height={iconSize} width={iconSize}></img>
-      <Title level={2}>Заголовок</Title>
-      <Text type="secondary">
+      <img
+        src={logo}
+        alt="logo"
+        height={iconSize}
+        width={iconSize}
+        style={{ marginBottom: "10px" }}
+      ></img>
+      <Text type="secondary" style={{ paddingBottom: "100px" }}>
         Тут можна розмістити слоган або якесь основне "послання" відвідувачам
         сторінки
       </Text>
