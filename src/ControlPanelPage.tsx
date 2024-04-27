@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import CPHeader from "./Components/ControlPanel/CPHeader";
 import CPSidebar from "./Components/ControlPanel/CPSidebar";
 import CPMainSection from "./Components/ControlPanel/CPMainSection";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, notification } from "antd";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
-import { ApiResponse, Prices } from "./Helpers/APITypes";
+import { ApiResponse } from "./Helpers/APITypes";
 import { URLs } from "./Helpers/URLs";
 
 const options = {
@@ -19,6 +19,7 @@ const options = {
 
 const ControlPanelPage = () => {
   const [cpdata, setCPData] = useState<ApiResponse | null>(null);
+  const [api, contextHolder] = notification.useNotification();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,11 +27,15 @@ const ControlPanelPage = () => {
       axios(options)
         .then((response: AxiosResponse<ApiResponse>) => {
           setCPData(response.data);
-          console.log(response);
         })
         .catch((error: AxiosError) => {
           if (error.response?.status === 401) {
             navigate("/AdminLogin");
+          } else {
+            api["error"]({
+              message: "Помилка підключення до серверу",
+              description: error.message,
+            });
           }
         });
     }
@@ -47,6 +52,7 @@ const ControlPanelPage = () => {
         },
       }}
     >
+      {contextHolder}
       <div
         style={{
           display: "flex",

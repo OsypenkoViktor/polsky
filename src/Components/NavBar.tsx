@@ -5,7 +5,7 @@ import { MenuFoldOutlined } from "@ant-design/icons";
 const navbarStyle: React.CSSProperties = {
   height: "100px",
   width: "100%",
-  backgroundColor: "#EDC5AB",
+  backgroundColor: "#eba9c4",
   marginTop: "0px",
   zIndex: "1",
   display: "flex",
@@ -62,7 +62,7 @@ const NavLinksBlock = () => {
 };
 
 const NavLink = ({ anchorID, title }: { anchorID: string; title: string }) => {
-  const anchorStyle: React.CSSProperties = { color: "#217074" };
+  const anchorStyle: React.CSSProperties = { color: "black" };
 
   const textStyle: React.CSSProperties = {
     margin: "20px",
@@ -72,9 +72,7 @@ const NavLink = ({ anchorID, title }: { anchorID: string; title: string }) => {
 
   return (
     <Typography.Text style={textStyle}>
-      <a href={anchorID} style={anchorStyle}>
-        {title}
-      </a>
+      <Typography.Link href={anchorID}>{title}</Typography.Link>
     </Typography.Text>
   );
 };
@@ -125,7 +123,7 @@ const DrawerNavBtn = () => {
         type="link"
         onClick={showDrawer}
       >
-        <MenuFoldOutlined style={{ fontSize: "45px", color: "black" }} />
+        <MenuFoldOutlined style={{ fontSize: "30px", color: "black" }} />
       </Button>
       <Drawer title="Навігація" onClose={onClose} open={open}>
         <DrawerNavLink title="Приклади робіт" anchorID="#slider" />

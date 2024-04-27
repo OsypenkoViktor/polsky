@@ -6,68 +6,115 @@ import {
   FacebookOutlined,
 } from "@ant-design/icons";
 import { Contact } from "../Helpers/APITypes";
+import logo from "../Images/Logo.png";
+import viberIcon from "../Images/Icons/viber.svg";
 
-const { Title, Text } = Typography;
+const { Title, Text, Link } = Typography;
 
 const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
   const phoneNumber = contacts?.find(
     (contact) => contact.type === "PhoneNumber"
-  );
-  const email = contacts?.find((contact) => contact.type === "Email");
-  const facebook = contacts?.find((contact) => contact.type === "Facebook");
+  )?.value;
+  const email = contacts?.find((contact) => contact.type === "Email")?.value;
+  const facebook = contacts?.find(
+    (contact) => contact.type === "Facebook"
+  )?.value;
 
   return (
-    <div id="contacts">
+    <div id="contacts" style={{ backgroundColor: "black" }}>
       <Divider>
-        <b>Контакти</b>
+        <b style={{ color: "white" }}>Контакти</b>
       </Divider>
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "start",
           alignItems: "center",
-          marginBottom: "50px",
+          flexWrap: "wrap",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <PhoneOutlined style={{ fontSize: 30, margin: "10px" }} />
-          <a href={"tel:" + phoneNumber?.value} style={{ color: "inherit" }}>
-            {phoneNumber?.value}
-          </a>
+        <div style={{ minWidth: "400px", color: "white", paddingLeft: "20px" }}>
+          <img
+            src={logo}
+            alt="logo"
+            height={200}
+            style={{
+              backgroundColor: "rgba(255,255,255,0.5)",
+              borderRadius: "30%",
+            }}
+          />
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <MailOutlined style={{ fontSize: 30, margin: "10px" }} />
-          <a
-            href={"mailto:" + email?.value + "?subject=Тема листа"}
-            style={{ color: "inherit" }}
+        <div style={{ width: "400px", color: "white", paddingLeft: "20px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
           >
-            {email?.value}
-          </a>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <FacebookOutlined style={{ fontSize: 30, margin: "10px" }} />
-          <a href={facebook?.value} style={{ color: "inherit" }}>
-            Facebook
-          </a>
+            <Link
+              style={{ color: "white", fontSize: "30px", marginRight: "10px" }}
+              href={`tel:${phoneNumber}`}
+            >
+              <PhoneOutlined style={{ color: "white", fontSize: "30px" }} />
+            </Link>
+            <Text style={{ color: "white" }}>{phoneNumber}</Text>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Link
+              style={{ color: "white", fontSize: "30px", marginRight: "10px" }}
+              href={`mailto:${email}`}
+            >
+              <MailOutlined style={{ color: "white", fontSize: "30px" }} />
+            </Link>
+            <Text style={{ color: "white" }}>{email}</Text>
+          </div>
+          <div>
+            <Text style={{ color: "white" }}>
+              Мессенджери і соціальні сіті:
+            </Text>
+            <div
+              style={{
+                border: "1px white solid",
+                padding: "5px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Link
+                style={{
+                  color: "white",
+                  fontSize: "30px",
+                  marginRight: "10px",
+                }}
+                href={facebook}
+              >
+                <FacebookOutlined
+                  style={{ color: "white", fontSize: "30px" }}
+                />
+              </Link>
+              <Link
+                style={{
+                  color: "white",
+                  fontSize: "30px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                href={facebook}
+              >
+                <img
+                  src={viberIcon}
+                  alt="viberLink"
+                  width={30}
+                  style={{ color: "white" }}
+                />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

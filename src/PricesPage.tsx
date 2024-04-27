@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Flex, Table, Collapse } from "antd";
+import { Typography, Flex, Table, Collapse, Divider, notification } from "antd";
 import { CollapseProps } from "antd";
 import PriceCalculator from "./Components/PriceCalculator";
 import axios, { AxiosResponse } from "axios";
@@ -53,17 +53,23 @@ const servicesTableColumns = [
 ];
 
 const PricesPage = () => {
+  const [api, contextHolder] = notification.useNotification();
   const [pricesData, setPricesData] = useState<Prices | null>(null);
   useEffect(() => {
     async function getPrices() {
-      axios(options).then((response: AxiosResponse<Prices>) => {
-        setPricesData(response.data);
-      });
+      axios(options)
+        .then((response: AxiosResponse<Prices>) => {
+          setPricesData(response.data);
+        })
+        .catch((error) => {
+          api["error"]({
+            message: "Не вдалося завантажити прайс",
+            description: "Будь ласка, спробуйте зайти пізніше",
+          });
+        });
     }
     getPrices();
   }, []);
-  console.log(pricesData);
-
   const ceilingMaterialsTableData = pricesData?.ceilingMaterials.map(
     (material, index) => ({
       key: `${index + 1}`,
@@ -83,7 +89,7 @@ const PricesPage = () => {
   const priceCollapsItems: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Матеріали",
+      label: "Ціни на матеріали",
       children: (
         <Table
           dataSource={ceilingMaterialsTableData}
@@ -98,7 +104,7 @@ const PricesPage = () => {
   const servicesCollapsItems: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Послуги",
+      label: "Ціни на послуги",
       children: (
         <Table
           dataSource={servicesTableData}
@@ -111,30 +117,39 @@ const PricesPage = () => {
   ];
 
   return (
-    <Flex
-      gap={"middle"}
-      id="calculator"
-      vertical
-      justify="space-between"
-      align="center"
-    >
-      <Title level={3}>Ціни</Title>
+    <>
+      {contextHolder}
+      <Divider />
+      <Flex
+        id="calculator"
+        vertical
+        justify="space-between"
+        align="center"
+        style={{
+          marginTop: "70px",
+        }}
+      >
+        <Title level={3}>Прайси</Title>
 
-      <Collapse
-        items={priceCollapsItems}
-        style={{
-          width: "100%",
-        }}
-      />
-      <Collapse
-        items={servicesCollapsItems}
-        style={{
-          width: "100%",
-        }}
-      />
-      <Title level={2}>Калькулятор цін</Title>
-      <PriceCalculator prices={pricesData} />
-    </Flex>
+        <Collapse
+          items={priceCollapsItems}
+          style={{
+            width: "100%",
+          }}
+        />
+        <Collapse
+          items={servicesCollapsItems}
+          style={{
+            width: "100%",
+          }}
+        />
+
+        <Title level={3} style={{ marginTop: "50px" }}>
+          Калькулятор цін
+        </Title>
+        <PriceCalculator prices={pricesData} />
+      </Flex>
+    </>
   );
 };
 

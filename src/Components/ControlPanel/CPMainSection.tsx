@@ -1,8 +1,8 @@
 import React, { useEffect, useState, MouseEvent } from "react";
 import type { CeilingMaterial, Prices, Service } from "../../Helpers/APITypes";
-import { Typography, Button, Input, Form } from "antd";
+import { Typography, Button, Input, Form, notification, Spin } from "antd";
 import type { FormProps } from "antd";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import TextArea from "antd/es/input/TextArea";
 import { URLs } from "../../Helpers/URLs";
 
@@ -87,6 +87,7 @@ const CreateMaterialForm = ({
     description?: string;
     price?: string;
   };
+  const [api, contextHolder] = notification.useNotification();
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const options = {
@@ -104,14 +105,19 @@ const CreateMaterialForm = ({
     };
     axios(options)
       .then((response) => {
-        console.log(response);
-
         if (response.status === 201) {
           reloadDataHandler();
+          api["success"]({
+            message: "Успіх",
+            description: "Матеріал успішно створено!",
+          });
         }
       })
       .catch((error) => {
-        console.log(error);
+        api["error"]({
+          message: "Помилка підключення до серверу",
+          description: error.message,
+        });
       });
   };
 
@@ -122,46 +128,49 @@ const CreateMaterialForm = ({
   };
 
   return (
-    <Form
-      name="createMaterial"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="назва матеріалу"
-        name="name"
-        rules={[{ required: true, message: "Введіть назву матеріалу" }]}
+    <>
+      {contextHolder}
+      <Form
+        name="createMaterial"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="назва матеріалу"
+          name="name"
+          rules={[{ required: true, message: "Введіть назву матеріалу" }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item<FieldType>
-        label="Описання"
-        name="description"
-        rules={[{ required: true, message: "Введіть описання матеріалу" }]}
-      >
-        <Input.TextArea rows={4} />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="Описання"
+          name="description"
+          rules={[{ required: true, message: "Введіть описання матеріалу" }]}
+        >
+          <Input.TextArea rows={4} />
+        </Form.Item>
 
-      <Form.Item<FieldType>
-        label="Ціна"
-        name="price"
-        rules={[{ required: true, message: "Введіть ціну" }]}
-      >
-        <Input type="number" />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="Ціна"
+          name="price"
+          rules={[{ required: true, message: "Введіть ціну" }]}
+        >
+          <Input type="number" />
+        </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Створити матеріал
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Створити матеріал
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
@@ -175,6 +184,8 @@ const CreateServiceForm = ({
     description?: string;
     price?: string;
   };
+
+  const [api, contextHolder] = notification.useNotification();
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const options = {
@@ -194,10 +205,17 @@ const CreateServiceForm = ({
       .then((response) => {
         if (response.status === 201) {
           reloadDataHandler();
+          api["success"]({
+            message: "Успіх",
+            description: "Сервіс успішно створено!",
+          });
         }
       })
       .catch((error) => {
-        console.log(error);
+        api["error"]({
+          message: "Помилка підключення до серверу",
+          description: error.message,
+        });
       });
   };
 
@@ -208,46 +226,49 @@ const CreateServiceForm = ({
   };
 
   return (
-    <Form
-      name="createMaterial"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="назва матеріалу"
-        name="name"
-        rules={[{ required: true, message: "Введіть назву матеріалу" }]}
+    <>
+      {contextHolder}
+      <Form
+        name="createMaterial"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="назва матеріалу"
+          name="name"
+          rules={[{ required: true, message: "Введіть назву матеріалу" }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item<FieldType>
-        label="Описання"
-        name="description"
-        rules={[{ required: true, message: "Введіть описання матеріалу" }]}
-      >
-        <Input.TextArea rows={4} />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="Описання"
+          name="description"
+          rules={[{ required: true, message: "Введіть описання матеріалу" }]}
+        >
+          <Input.TextArea rows={4} />
+        </Form.Item>
 
-      <Form.Item<FieldType>
-        label="Ціна"
-        name="price"
-        rules={[{ required: true, message: "Введіть ціну" }]}
-      >
-        <Input type="number" />
-      </Form.Item>
+        <Form.Item<FieldType>
+          label="Ціна"
+          name="price"
+          rules={[{ required: true, message: "Введіть ціну" }]}
+        >
+          <Input type="number" />
+        </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Створити матеріал
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Створити матеріал
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
@@ -310,14 +331,29 @@ const ServiceCard = ({
 
 const CPMainSection = () => {
   const [prices, setPrices] = useState<Prices | null>(null);
+  const [api, contextHolder] = notification.useNotification();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     getPricesData();
   }, []);
 
   async function getPricesData() {
-    await axios.get<Prices>(URLs.getPrices).then((response) => {
-      setPrices(response.data);
-    });
+    setLoading(true);
+    await axios
+      .get<Prices>(URLs.getPrices)
+      .then((response) => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        setPrices(response.data);
+      })
+      .catch((error) => {
+        api["error"]({
+          message: "Помилка підключення до серверу",
+          description: error.message,
+        });
+        setLoading(false);
+      });
   }
 
   const changeMaterialHandler: MaterialHandlerFunction = async (
@@ -348,12 +384,23 @@ const CPMainSection = () => {
         },
         withCredentials: true,
       };
+      setLoading(true);
       axios(options)
         .then((response) => {
-          console.log(response);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+          api["success"]({
+            message: "Успіх",
+            description: "Матеріал успішно змінено!",
+          });
         })
         .catch((error) => {
-          console.log(error);
+          api["error"]({
+            message: "Помилка підключення до серверу",
+            description: error.message,
+          });
+          setLoading(false);
         });
     }
   };
@@ -386,12 +433,23 @@ const CPMainSection = () => {
         },
         withCredentials: true,
       };
+      setLoading(true);
       axios(options)
         .then((response) => {
-          console.log(response);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+          api["success"]({
+            message: "Успіх",
+            description: "Сервіс успішно змінено!",
+          });
         })
         .catch((error) => {
-          console.log(error);
+          api["error"]({
+            message: "Помилка підключення до серверу",
+            description: error.message,
+          });
+          setLoading(false);
         });
     }
   };
@@ -412,15 +470,26 @@ const CPMainSection = () => {
         },
         withCredentials: true,
       };
+      setLoading(true);
       axios(options)
         .then((response) => {
-          console.log(response);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
           if (response.status === 200) {
             getPricesData();
+            api["success"]({
+              message: "Успіх",
+              description: "Сервіс успішно видалено",
+            });
           }
         })
         .catch((error) => {
-          console.log(error);
+          api["error"]({
+            message: "Помилка підключення до серверу",
+            description: error.message,
+          });
+          setLoading(false);
         });
     }
   };
@@ -441,60 +510,76 @@ const CPMainSection = () => {
         },
         withCredentials: true,
       };
+      setLoading(true);
       axios(options)
         .then((response) => {
-          console.log(response);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
           if (response.status === 200) {
             getPricesData();
+            api["success"]({
+              message: "Успіх",
+              description: "Матеріал успішно видалено",
+            });
           }
         })
         .catch((error) => {
-          console.log(error);
+          setLoading(false);
+          api["error"]({
+            message: "Помилка підключення до серверу",
+            description: error.message,
+          });
         });
     }
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "black",
-        height: "100vh",
-        overflow: "auto",
-        flex: 1,
-        padding: 5,
-      }}
-    >
-      <Title level={3} style={{ color: "white" }}>
-        Матеріали:
-      </Title>
-      {prices?.ceilingMaterials.map((material) => (
-        <MaterialCard
-          key={material.id}
-          material={material}
-          changeHandler={changeMaterialHandler}
-          deleteHandler={deleteMaterialHandler}
-        />
-      ))}
-      <Title level={4} style={{ color: "white" }}>
-        Створити новий матеріал
-      </Title>
-      <CreateMaterialForm reloadDataHandler={getPricesData} />
-      <Title level={3} style={{ color: "white" }}>
-        Послуги:
-      </Title>
-      {prices?.services.map((service) => (
-        <ServiceCard
-          key={service.id}
-          service={service}
-          changeHandler={changeServiceHandler}
-          deleteHandler={deleteServiceHandler}
-        />
-      ))}
-      <Title level={4} style={{ color: "white" }}>
-        Додати новий сервіс
-      </Title>
-      <CreateServiceForm reloadDataHandler={getPricesData} />
-    </div>
+    <>
+      {contextHolder}
+      <div
+        style={{
+          backgroundColor: "black",
+          height: "100vh",
+          overflow: "auto",
+          flex: 1,
+          padding: 5,
+        }}
+      >
+        <Spin spinning={loading} tip="Зачекайте..." style={{ width: "100%" }}>
+          <Title level={3} style={{ color: "white" }}>
+            Матеріали:
+          </Title>
+          {prices?.ceilingMaterials.map((material) => (
+            <MaterialCard
+              key={material.id}
+              material={material}
+              changeHandler={changeMaterialHandler}
+              deleteHandler={deleteMaterialHandler}
+            />
+          ))}
+          <Title level={4} style={{ color: "white" }}>
+            Створити новий матеріал
+          </Title>
+          <CreateMaterialForm reloadDataHandler={getPricesData} />
+          <Title level={3} style={{ color: "white" }}>
+            Послуги:
+          </Title>
+          {prices?.services.map((service) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              changeHandler={changeServiceHandler}
+              deleteHandler={deleteServiceHandler}
+            />
+          ))}
+          <Title level={4} style={{ color: "white" }}>
+            Додати новий сервіс
+          </Title>
+          <CreateServiceForm reloadDataHandler={getPricesData} />
+        </Spin>
+      </div>
+    </>
   );
 };
 
