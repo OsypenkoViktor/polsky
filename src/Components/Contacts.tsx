@@ -21,14 +21,14 @@ const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
   )?.value;
 
   return (
-    <div id="contacts" style={{ backgroundColor: "black" }}>
+    <div id="contacts" style={{ backgroundColor: "black", marginTop: "100px" }}>
       <Divider>
         <b style={{ color: "white" }}>Контакти</b>
       </Divider>
       <div
         style={{
           display: "flex",
-          justifyContent: "start",
+          justifyContent: "space-around",
           alignItems: "center",
           flexWrap: "wrap",
         }}
@@ -83,6 +83,7 @@ const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
                 padding: "5px",
                 display: "flex",
                 alignItems: "center",
+                width: "300px",
               }}
             >
               <Link

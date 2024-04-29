@@ -44,7 +44,7 @@ const AdminLoginPage = () => {
         console.error("Error:", error);
         api["error"]({
           message: "Помилка входу!",
-          description: error.response.data.error,
+          description: error.message,
         });
       });
   };

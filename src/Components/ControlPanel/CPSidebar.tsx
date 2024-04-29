@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Input, notification, Spin } from "antd";
 import { ApiResponse, Contact } from "../../Helpers/APITypes";
 import axios from "axios";
 import { URLs } from "../../Helpers/URLs";
+import SliderImagesHandler from "./SliderImagesHandler";
 
 type FieldType = {
   phone?: string;
@@ -15,7 +16,13 @@ type FieldType = {
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-const CPSidebar = ({ siteData }: { siteData: ApiResponse | null }) => {
+const CPSidebar = ({
+  siteData,
+  reloadCPanel,
+}: {
+  siteData: ApiResponse | null;
+  reloadCPanel: () => void;
+}) => {
   const [api, contextHolder] = notification.useNotification();
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
@@ -83,7 +90,7 @@ const CPSidebar = ({ siteData }: { siteData: ApiResponse | null }) => {
             backgroundColor: "black",
             color: "white",
             width: "40vw",
-            height: "100vh",
+            height: "90vh",
             borderRight: "1px white solid",
             display: "flex",
             flexDirection: "column",
@@ -159,6 +166,10 @@ const CPSidebar = ({ siteData }: { siteData: ApiResponse | null }) => {
               </Form.Item>
             </Form>
           </div>
+          <SliderImagesHandler
+            siteData={siteData}
+            reloadCPanel={reloadCPanel}
+          />
         </div>
       </Spin>
     </>

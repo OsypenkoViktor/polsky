@@ -23,24 +23,25 @@ const ControlPanelPage = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    async function getCPData() {
-      axios(options)
-        .then((response: AxiosResponse<ApiResponse>) => {
-          setCPData(response.data);
-        })
-        .catch((error: AxiosError) => {
-          if (error.response?.status === 401) {
-            navigate("/AdminLogin");
-          } else {
-            api["error"]({
-              message: "Помилка підключення до серверу",
-              description: error.message,
-            });
-          }
-        });
-    }
     getCPData();
   }, []);
+
+  async function getCPData() {
+    axios(options)
+      .then((response: AxiosResponse<ApiResponse>) => {
+        setCPData(response.data);
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === 401) {
+          navigate("/AdminLogin");
+        } else {
+          api["error"]({
+            message: "Помилка підключення до серверу",
+            description: error.message,
+          });
+        }
+      });
+  }
   return (
     <ConfigProvider
       theme={{
@@ -65,9 +66,10 @@ const ControlPanelPage = () => {
           style={{
             display: "flex",
             flex: 1,
+            height: "90vh",
           }}
         >
-          <CPSidebar siteData={cpdata} />
+          <CPSidebar siteData={cpdata} reloadCPanel={getCPData} />
           <CPMainSection />
         </div>
       </div>

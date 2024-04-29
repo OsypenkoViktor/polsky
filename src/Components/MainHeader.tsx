@@ -38,7 +38,7 @@ const MainHeader: React.FC = () => {
         style={{ marginBottom: "10px" }}
       ></img>
       <Text type="secondary" style={{ paddingBottom: "100px" }}>
-        Тут можна розмістити слоган або якесь основне "послання" відвідувачам
+        Тут можна розмістити SLOGAN або якесь основне "послання" відвідувачам
         сторінки
       </Text>
     </Flex>

@@ -540,8 +540,8 @@ const CPMainSection = () => {
       <div
         style={{
           backgroundColor: "black",
-          height: "100vh",
           overflow: "auto",
+          height: "100%",
           flex: 1,
           padding: 5,
         }}

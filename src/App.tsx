@@ -47,7 +47,7 @@ function App() {
       <ConfigProvider
         theme={{
           token: {
-            fontFamily: "Roboto",
+            fontFamily: "Kanit-Regular",
             fontSize: 18,
           },
         }}

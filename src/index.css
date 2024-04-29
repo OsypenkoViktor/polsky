@@ -1,3 +1,25 @@
+@font-face{
+    font-family: "Roboto-Regular",sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    src: url("./Fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: Lilita One;
+    font-weight: 400;
+    font-style: normal;
+    src: url("./Fonts/LilitaOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: Kanit-Regular;
+    font-weight: 400;
+    font-style: normal;
+    src: url("./Fonts/Kanit-Regular.ttf");
+}
+
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -5,15 +27,10 @@
     scroll-behavior: smooth;
 }
 
-@font-face{
-    font-family: "Roboto",sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    src: url("./Fonts/Roboto-Regular.ttf");
-}
+
+
 
 body{
-background: rgb(255, 0, 0);
     background: linear-gradient(90deg, rgba(255, 0, 0, 0.14329481792717091) 0%, rgba(0, 0, 255, 0.12368697478991597) 48%, rgba(237, 255, 4, 0.1516981792717087) 100%);
-width: 100%;
+    width: 100%;
 }

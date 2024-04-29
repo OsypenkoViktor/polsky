@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Flex, Table, Collapse, Divider, notification } from "antd";
+import {
+  Typography,
+  Flex,
+  Table,
+  Collapse,
+  Divider,
+  notification,
+  ConfigProvider,
+} from "antd";
 import { CollapseProps } from "antd";
 import PriceCalculator from "./Components/PriceCalculator";
 import axios, { AxiosResponse } from "axios";
 import { Prices } from "./Helpers/APITypes";
 import { URLs } from "./Helpers/URLs";
+import "./index.css";
 
 const { Title } = Typography;
 
@@ -119,6 +128,7 @@ const PricesPage = () => {
   return (
     <>
       {contextHolder}
+
       <Divider />
       <Flex
         id="calculator"
@@ -128,8 +138,9 @@ const PricesPage = () => {
         style={{
           marginTop: "70px",
         }}
+        className="test"
       >
-        <Title level={3}>Прайси</Title>
+        <h1 className="test">Prices</h1>
 
         <Collapse
           items={priceCollapsItems}
