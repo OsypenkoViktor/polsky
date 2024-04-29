@@ -50,6 +50,7 @@ function App() {
             fontFamily: "Kanit-Regular",
             fontSize: 18,
           },
+          
         }}
       >
         <div

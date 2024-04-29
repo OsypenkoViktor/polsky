@@ -23,7 +23,7 @@ const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
   return (
     <div id="contacts" style={{ backgroundColor: "black", marginTop: "100px" }}>
       <Divider>
-        <b style={{ color: "white" }}>Контакти</b>
+        <b style={{ color: "white" }}>Skontaktuj się z nami</b>
       </Divider>
       <div
         style={{
@@ -33,7 +33,7 @@ const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
           flexWrap: "wrap",
         }}
       >
-        <div style={{ minWidth: "400px", color: "white", paddingLeft: "20px" }}>
+        <div style={{ minWidth: "300px", color: "white", paddingLeft: "20px" }}>
           <img
             src={logo}
             alt="logo"
@@ -74,15 +74,11 @@ const Contacts = ({ contacts }: { contacts: Contact[] | null }) => {
             <Text style={{ color: "white" }}>{email}</Text>
           </div>
           <div>
-            <Text style={{ color: "white" }}>
-              Мессенджери і соціальні сіті:
-            </Text>
             <div
               style={{
-                border: "1px white solid",
-                padding: "5px",
                 display: "flex",
                 alignItems: "center",
+
                 width: "300px",
               }}
             >

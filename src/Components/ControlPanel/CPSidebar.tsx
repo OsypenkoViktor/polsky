@@ -63,9 +63,7 @@ const CPSidebar = ({
     };
     axios(options)
       .then((data) => {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
+        setLoading(false);
 
         api["success"]({
           message: "Успіх",

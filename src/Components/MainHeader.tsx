@@ -7,12 +7,12 @@ const { Text } = Typography;
 
 const MainHeader: React.FC = () => {
   const [iconSize, setIconSize] = useState(
-    window.innerWidth < 600 ? "400" : "600"
+    window.innerWidth < 600 ? "300" : "600"
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setIconSize(window.innerWidth < 600 ? "400" : "600");
+      setIconSize(window.innerWidth < 600 ? "300" : "600");
     };
 
     window.addEventListener("resize", handleResize);
@@ -38,8 +38,8 @@ const MainHeader: React.FC = () => {
         style={{ marginBottom: "10px" }}
       ></img>
       <Text type="secondary" style={{ paddingBottom: "100px" }}>
-        Тут можна розмістити SLOGAN або якесь основне "послання" відвідувачам
-        сторінки
+        Ożyw swój wnętrz z naszymi indywidualnie zaprojektowanymi sufitami
+        napinanymi.
       </Text>
     </Flex>
   );

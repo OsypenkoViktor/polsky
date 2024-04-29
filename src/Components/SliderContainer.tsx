@@ -35,11 +35,16 @@ const SliderContainer = ({
       }}
     >
       <Divider></Divider>
-      <Title level={3} style={{ textAlign: "center" }}>
-        Приклади робіт
+      <Title
+        level={3}
+        style={{ textAlign: "center", fontFamily: "Lilita One" }}
+      >
+        Przykłady pracy
       </Title>
       <Text type={"secondary"} style={{ textAlign: "center" }}>
-        І ще один напис-"підводка" до розділу з фотогалереєю
+        Jakość to podstawowa zasada, której przestrzegamy w każdym projekcie.
+        Dążymy do doskonałości w każdym detalu, aby osiągnąć maksymalny poziom
+        jakości i zadowolenia klientów.
       </Text>
       <Divider></Divider>
       <div style={{ width: "80%" }}>

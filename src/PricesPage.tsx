@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Typography,
-  Flex,
-  Table,
-  Collapse,
-  Divider,
-  notification,
-  ConfigProvider,
-} from "antd";
+import { Typography, Flex, Table, Collapse, Divider, notification } from "antd";
 import { CollapseProps } from "antd";
 import PriceCalculator from "./Components/PriceCalculator";
 import axios, { AxiosResponse } from "axios";
@@ -27,35 +19,37 @@ const options = {
 
 const ceilingMaterialsTableColumns = [
   {
-    title: "Тип потолка",
+    title: "Materiał",
     dataIndex: "name",
     key: "name",
+    width: 150,
   },
   {
-    title: "Опис",
+    title: "Opis",
     dataIndex: "description",
     key: "description",
   },
   {
-    title: "Ціна",
+    title: "Cena",
     dataIndex: "price",
     key: "price",
+    width: 100,
   },
 ];
 
 const servicesTableColumns = [
   {
-    title: "Тип послуги",
+    title: "Praca",
     dataIndex: "name",
     key: "name",
   },
   {
-    title: "Опис послуги",
+    title: "Opis",
     dataIndex: "description",
     key: "description",
   },
   {
-    title: "Ціна",
+    title: "Cena,zl",
     dataIndex: "price",
     key: "price",
   },
@@ -72,8 +66,8 @@ const PricesPage = () => {
         })
         .catch((error) => {
           api["error"]({
-            message: "Не вдалося завантажити прайс",
-            description: "Будь ласка, спробуйте зайти пізніше",
+            message: "Nie udało się załadować ceny",
+            description: "Spróbuj ponownie później",
           });
         });
     }
@@ -98,13 +92,14 @@ const PricesPage = () => {
   const priceCollapsItems: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Ціни на матеріали",
+      label: "Ceny materiałów",
       children: (
         <Table
           dataSource={ceilingMaterialsTableData}
           columns={ceilingMaterialsTableColumns}
           pagination={false}
-          style={{ width: "90%" }}
+          size="small"
+          scroll={{ x: 600 }}
         />
       ),
     },
@@ -113,13 +108,14 @@ const PricesPage = () => {
   const servicesCollapsItems: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Ціни на послуги",
+      label: "Ceny za usługi",
       children: (
         <Table
           dataSource={servicesTableData}
           columns={servicesTableColumns}
           pagination={false}
-          style={{ width: "90%" }}
+          size="small"
+          scroll={{ x: 600 }}
         />
       ),
     },
@@ -129,7 +125,6 @@ const PricesPage = () => {
     <>
       {contextHolder}
 
-      <Divider />
       <Flex
         id="calculator"
         vertical
@@ -138,25 +133,20 @@ const PricesPage = () => {
         style={{
           marginTop: "70px",
         }}
-        className="test"
       >
-        <h1 className="test">Prices</h1>
+        <Divider />
+        <Title style={{ fontFamily: "Lilita One" }} level={3}>
+          Ceny
+        </Title>
+        <Divider />
+        <Collapse items={priceCollapsItems} style={{ width: "100%" }} />
+        <Collapse items={servicesCollapsItems} style={{ width: "100%" }} />
 
-        <Collapse
-          items={priceCollapsItems}
-          style={{
-            width: "100%",
-          }}
-        />
-        <Collapse
-          items={servicesCollapsItems}
-          style={{
-            width: "100%",
-          }}
-        />
-
-        <Title level={3} style={{ marginTop: "50px" }}>
-          Калькулятор цін
+        <Title
+          level={4}
+          style={{ marginTop: "50px", fontFamily: "Lilita One" }}
+        >
+          Kalkulator kosztów
         </Title>
         <PriceCalculator prices={pricesData} />
       </Flex>

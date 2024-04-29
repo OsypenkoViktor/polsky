@@ -48,7 +48,7 @@ const ServiceCard = ({
         <Input
           id={`${service.id}`}
           type="number"
-          placeholder="кількість"
+          placeholder="numer"
           min={0}
           style={{}}
           onChange={onChangeHandler}
@@ -128,7 +128,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
   }
 
   return (
-    <>
+    <div>
       {calculatedPrice.totalCost === null ? (
         <Row align={"middle"} justify={"center"}>
           <Col xs={24} xl={20} xxl={20}>
@@ -136,7 +136,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
               style={{
                 backgroundColor: "rgba(237, 255, 4, 0.1516981792717087)",
               }}
-              title="Основні параметри"
+              title="Podstawowe parametry"
             >
               <div
                 style={{
@@ -148,7 +148,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
               >
                 <div>
                   <Title level={5} style={{ textAlign: "center" }}>
-                    Довжина кімнати:
+                    Długość pokoju:
                   </Title>
                   <Input
                     type="number"
@@ -160,7 +160,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
                 </div>
                 <div>
                   <Title level={5} style={{ textAlign: "center" }}>
-                    Ширина кімнати:
+                    Szerokość pokoju:
                   </Title>
                   <Input
                     type="number"
@@ -172,7 +172,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
                 </div>
                 <div>
                   <Title level={5} style={{ textAlign: "center" }}>
-                    Тип матеріалу:
+                    Typ materiału:
                   </Title>
                   <Select
                     style={{ width: "200px" }}
@@ -184,7 +184,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
                 </div>
               </div>
               <Divider />
-              <Title level={5}>Додаткові послуги:</Title>
+              <Title level={5}>Dodatkowe usługi:</Title>
               <div
                 style={{
                   display: "flex",
@@ -204,7 +204,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
                 </Row>
               </div>
               <Button onClick={resultHandler} type="primary">
-                Розрахувати вартість
+                Oblicz koszt
               </Button>
             </Card>
           </Col>
@@ -215,7 +215,7 @@ const PriceCalculator = ({ prices }: { prices: Prices | null }) => {
           calculatedPrice={calculatedPrice}
         />
       )}
-    </>
+    </div>
   );
 };
 
@@ -229,17 +229,17 @@ const ShowCalculationResult = ({
   return (
     <Result
       status="success"
-      title="Ваш розрахунок готовий."
-      subTitle={`Загальна вартість робіт складає ${calculatedPrice.totalCost} злотих. 
-      З них вартість основного матеріалу - ${calculatedPrice.materialCost} злотих, 
-      вартість додаткових послуг -${calculatedPrice.servicesCost} злотих`}
+      title="Twoje obliczenia są gotowe."
+      subTitle={`Całkowity koszt prac to ${calculatedPrice.totalCost} zł. 
+      Spośród nich koszt głównego materiału - ${calculatedPrice.materialCost} zł, 
+      koszt usług dodatkowych -${calculatedPrice.servicesCost} zł`}
       extra={[
         <Button
           key="buy"
           type="primary"
           onClick={(e) => hideCalculationResult(e)}
         >
-          Повернутися до розрахунків
+          Wróć do obliczeń
         </Button>,
       ]}
     />

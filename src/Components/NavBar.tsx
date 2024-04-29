@@ -3,9 +3,9 @@ import { Button, Typography, Drawer } from "antd";
 import { MenuFoldOutlined } from "@ant-design/icons";
 
 const navbarStyle: React.CSSProperties = {
-  height: "100px",
+  height: "10vh",
   width: "100%",
-  backgroundColor: "#eba9c4",
+  backgroundColor: "rgba(204, 204, 255,0.5)",
   marginTop: "0px",
   zIndex: "1",
   display: "flex",
@@ -53,17 +53,15 @@ const NavBar = () => {
 const NavLinksBlock = () => {
   return (
     <div>
-      <NavLink anchorID={"#slider"} title={"Приклади робіт"} />
-      <NavLink anchorID={"#pros"} title={"Чому ми"} />
-      <NavLink anchorID={"#calculator"} title={"Калькулятор"} />
-      <NavLink anchorID={"#contacts"} title={"Контакти"} />
+      <NavLink anchorID={"#slider"} title={"Przykłady pracy"} />
+      <NavLink anchorID={"#pros"} title={"Nasze atuty"} />
+      <NavLink anchorID={"#calculator"} title={"Ceny"} />
+      <NavLink anchorID={"#contacts"} title={"Skontaktuj się z nami"} />
     </div>
   );
 };
 
 const NavLink = ({ anchorID, title }: { anchorID: string; title: string }) => {
-  const anchorStyle: React.CSSProperties = { color: "black" };
-
   const textStyle: React.CSSProperties = {
     margin: "20px",
     fontSize: "20px",
@@ -85,7 +83,7 @@ const DrawerNavLink = ({
   title: string;
 }) => {
   const anchorStyle: React.CSSProperties = {
-    color: "blueviolet",
+    color: "blue",
   };
 
   const textStyle: React.CSSProperties = {
@@ -123,13 +121,18 @@ const DrawerNavBtn = () => {
         type="link"
         onClick={showDrawer}
       >
-        <MenuFoldOutlined style={{ fontSize: "30px", color: "black" }} />
+        <MenuFoldOutlined style={{ fontSize: "20px", color: "black" }} />
       </Button>
-      <Drawer title="Навігація" onClose={onClose} open={open}>
-        <DrawerNavLink title="Приклади робіт" anchorID="#slider" />
-        <DrawerNavLink title="Чому ми" anchorID="#slider" />
-        <DrawerNavLink title="Калькулятор" anchorID="#calculator" />
-        <DrawerNavLink title="Контакти" anchorID="#slider" />
+      <Drawer
+        style={{ backgroundColor: "rgba(204, 204, 255,0.9)" }}
+        title="Nawigacja"
+        onClose={onClose}
+        open={open}
+      >
+        <DrawerNavLink title="Przykłady pracy" anchorID="#slider" />
+        <DrawerNavLink title="Nasze atuty" anchorID="#slider" />
+        <DrawerNavLink title="Ceny" anchorID="#calculator" />
+        <DrawerNavLink title="Skontaktuj się z nami" anchorID="#slider" />
       </Drawer>
     </>
   );
